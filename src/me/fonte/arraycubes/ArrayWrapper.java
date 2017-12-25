@@ -1,14 +1,35 @@
+/**
+ * ArrayWrapper
+ * This is the primary data structure for the ArrayCubes project.
+ * It enhances a nested 2D LinkedList with methods for ArrayCubes' particular needs
+ * 
+ * @author Jeremy Fonte
+ */
+
+
 package me.fonte.arraycubes;
 import java.util.LinkedList;
 import java.util.UUID;
 
 
+/**
+ * This is the ArrayWrapper class, which houses the methods to create and manipulate 2D linked lists
+ * 
+ * @author Jeremy
+ *
+ * @param <T> A numeric class that fills the 2D LinkedList.
+ */
 public class ArrayWrapper<T extends Number> {
 	public final String id = UUID.randomUUID().toString();
 	
 	//empty constructor
 	public ArrayWrapper() {	}
 	
+	/**
+	 * This constructor initializes the data field with the provided value
+	 * 
+	 * @param data The 2D LinkedList for this ArrayWrapper
+	 */
 	public ArrayWrapper(LinkedList<LinkedList<T>> data) {
 		this.data = data;
 	}
@@ -16,7 +37,10 @@ public class ArrayWrapper<T extends Number> {
 	//The actual 2D array data in a linked list 
 	LinkedList<LinkedList<T>> data = new LinkedList<LinkedList<T>>();
 	
-	//flip assumes the array is "even" or "rectangular", not a jagged array of arrays
+	/**"flip" assumes the array is "even" or "rectangular", not a jagged array of arrays
+	 * 
+	 * @return Returns a new ArrayWrapper that has been flipped, columns for rows
+	 */
 	public ArrayWrapper<T> flip() {
 		//check if the 2D array is jagged
 		boolean isJagged = checkIfJagged();
@@ -29,7 +53,10 @@ public class ArrayWrapper<T extends Number> {
 		return result;
 	}
 	
-	//perform the operation of flipping the rows by columns to columns by rows
+	/**Perform the operation of flipping the rows by columns to columns by rows
+	 * 
+	 * @return A new ArrayWrapper that's been flipped
+	 */
 	private ArrayWrapper<T> performFlip() {	
 		
 		LinkedList<LinkedList<T>> source = this.data;
@@ -55,7 +82,10 @@ public class ArrayWrapper<T extends Number> {
 	}
 	
 
-	//make sure the 2D list isn't a jagged array, which would complicate flipping it
+	/**make sure the 2D list isn't a jagged array, which would complicate flipping it
+	 * 
+	 * @return Yes/No if the array is jagged.
+	 */
 	private boolean checkIfJagged() {		
 		//check if the current array is jagged
 		int baselineY = data.get(0).size();
