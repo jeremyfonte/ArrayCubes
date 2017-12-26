@@ -10,15 +10,15 @@ public class AC {
 
 	private static void testSwap() {
 		//Create and initialize an input to the swap method for 2D arrays
-		ArrayWrapper<Integer> inputForFlip = new ArrayWrapper<Integer>();
-		inputForFlip.data = new LinkedList<LinkedList<Integer>>();
+		ArrayWrapper<Integer> inputForSwap = new ArrayWrapper<Integer>();
+		inputForSwap.data = new LinkedList<LinkedList<Integer>>();
 	
 		for(int i = 0; i < 5; i++) {
-			inputForFlip.data.add(new LinkedList<Integer>());
+			inputForSwap.data.add(new LinkedList<Integer>());
 		}
 		
 		//init the 2D array with some incremented values
-		for(LinkedList<Integer> innerList : inputForFlip.data) {
+		for(LinkedList<Integer> innerList : inputForSwap.data) {
 			for(int counter = 0; counter < 5; counter++) {
 				innerList.add(counter);
 				System.out.print(counter + " ");
@@ -26,9 +26,9 @@ public class AC {
 			System.out.print("\n");
 		}
 		
-		//create an output 2D array and perform the flip, collecting the results
+		//create an output 2D array and perform the swap, collecting the results
 		ArrayWrapper<Integer> outputFromSwap = new ArrayWrapper<Integer>();
-		outputFromSwap = inputForFlip.swap();
+		outputFromSwap = inputForSwap.swap();
 		
 		//test the "swapped" output (just display it)
 		for(int i = 0; i < 5; i++) {
