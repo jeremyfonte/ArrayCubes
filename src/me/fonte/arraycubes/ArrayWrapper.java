@@ -41,14 +41,14 @@ public class ArrayWrapper<T extends Number> {
 	 * 
 	 * @return Returns a new ArrayWrapper that has been flipped, columns for rows
 	 */
-	public ArrayWrapper<T> flip() {
+	public ArrayWrapper<T> swap() {
 		//check if the 2D array is jagged
 		boolean isJagged = checkIfJagged();
 		if(isJagged) {
 			//throw error and cancel flip operation
 		}
 		
-		ArrayWrapper<T> result = performFlip();
+		ArrayWrapper<T> result = performSwap();
 		
 		return result;
 	}
@@ -57,7 +57,7 @@ public class ArrayWrapper<T extends Number> {
 	 * 
 	 * @return A new ArrayWrapper that's been flipped
 	 */
-	private ArrayWrapper<T> performFlip() {	
+	private ArrayWrapper<T> performSwap() {	
 		
 		LinkedList<LinkedList<T>> source = this.data;
 		LinkedList<LinkedList<T>> dest = new LinkedList<LinkedList<T>>();

@@ -5,11 +5,11 @@ import java.util.LinkedList;
 public class AC {
 
 	public static void main(String[] args) {
-		testFlip();
+		testSwap();
 	}
 
-	private static void testFlip() {
-		//Create and initialize an input to the flip method for 2D arrays
+	private static void testSwap() {
+		//Create and initialize an input to the swap method for 2D arrays
 		ArrayWrapper<Integer> inputForFlip = new ArrayWrapper<Integer>();
 		inputForFlip.data = new LinkedList<LinkedList<Integer>>();
 	
@@ -27,13 +27,13 @@ public class AC {
 		}
 		
 		//create an output 2D array and perform the flip, collecting the results
-		ArrayWrapper<Integer> outputFromFlip = new ArrayWrapper<Integer>();
-		outputFromFlip = inputForFlip.flip();
+		ArrayWrapper<Integer> outputFromSwap = new ArrayWrapper<Integer>();
+		outputFromSwap = inputForFlip.swap();
 		
-		//test the "flipped" output (just display it)
+		//test the "swapped" output (just display it)
 		for(int i = 0; i < 5; i++) {
 			for(int n = 0; n < 5; n++) {
-				System.out.print(outputFromFlip.data.get(i).get(n) + " ");
+				System.out.print(outputFromSwap.data.get(i).get(n) + " ");
 			}
 			System.out.print("\n");
 		}
