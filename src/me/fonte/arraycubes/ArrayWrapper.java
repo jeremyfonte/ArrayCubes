@@ -37,15 +37,16 @@ public class ArrayWrapper<T extends Number> {
 	//The actual 2D array data in a linked list 
 	LinkedList<LinkedList<T>> data = new LinkedList<LinkedList<T>>();
 	
-	/**"flip" assumes the array is "even" or "rectangular", not a jagged array of arrays
+	/**"swap" assumes the array is "even" or "rectangular", not a jagged array of arrays
 	 * 
-	 * @return Returns a new ArrayWrapper that has been flipped, columns for rows
+	 * @return Returns a new ArrayWrapper that has been swapped, columns for rows
 	 */
 	public ArrayWrapper<T> swap() {
 		//check if the 2D array is jagged
 		boolean isJagged = checkIfJagged();
 		if(isJagged) {
-			//throw error and cancel flip operation
+			//throw error and cancel swap operation
+			return null;
 		}
 		
 		ArrayWrapper<T> result = performSwap();
@@ -53,9 +54,9 @@ public class ArrayWrapper<T extends Number> {
 		return result;
 	}
 	
-	/**Perform the operation of flipping the rows by columns to columns by rows
+	/**Perform the operation of swapping the rows by columns to columns by rows
 	 * 
-	 * @return A new ArrayWrapper that's been flipped
+	 * @return A new ArrayWrapper that's been swapped
 	 */
 	private ArrayWrapper<T> performSwap() {	
 		
@@ -63,29 +64,29 @@ public class ArrayWrapper<T extends Number> {
 		LinkedList<LinkedList<T>> dest = new LinkedList<LinkedList<T>>();
 
 		
-		//actually set the flipped values
+		//init the swapped values
 		for(int i = 0; i < source.size(); i++) {
 			//init the inner LinkedList<T> in the 2D array
 			dest.add(i, new LinkedList<T>());
 		}
 		
-		//actually set the flipped values
+		//actually set the swapped values
 		for(int i = 0; i < source.size(); i++) {	
-			//loop through the inner array and add the flipped values
+			//loop through the inner array and add the swapped values
 			for(int n = 0; n < source.get(i).size(); n++) {
-				//set the destination, flipped from the source
+				//set the destination, swapped from the source
 				dest.get(n).add(i, source.get(i).get(n));
 			}
 			
 		}
 		
-		//set the result ArrayWrapper and return it, flipped
+		//set the result ArrayWrapper and return it, swapped
 		ArrayWrapper<T> result = new ArrayWrapper<T>(dest);
 		return result;
 	}
 	
 
-	/**make sure the 2D list isn't a jagged array, which would complicate flipping it
+	/**make sure the 2D list isn't a jagged array, which would complicate swapping it
 	 * 
 	 * @return Yes/No if the array is jagged.
 	 */
@@ -102,4 +103,40 @@ public class ArrayWrapper<T extends Number> {
 		}
 		return false; //not a jagged array
 	}
+	
+	/**
+	 * Flips a 2D array over the "x-axis", that is horizontally
+	 * 
+	 * @return The flipped 2D array
+	 */
+	public ArrayWrapper<T> flipX() {
+		LinkedList<LinkedList<T>> source = this.data;
+		LinkedList<LinkedList<T>> dest = new LinkedList<LinkedList<T>>();
+		
+		if(source.size() < 1) {
+			//throw error
+			return null;
+		}
+		
+		//init the LinkedList values
+		for(int i = 0; i < source.size(); i++) {
+			//init the inner LinkedList<T> in the 2D array
+			dest.add(i, new LinkedList<T>());
+		}
+		
+		//actually set the flipped values
+		for(int i = 0; i < source.size(); i++) {	
+			//loop through the inner array and add the flipped values
+			int n2 = source.get(i).size() - 1;
+			for(int n = 0; n < source.get(i).size(); n++, n2--) {
+				//set the destination, flipped from the source
+				dest.get(i).add(n, source.get(i).get(n2));
+			}
+			
+		}
+		
+		ArrayWrapper<T> result = new ArrayWrapper<T>(dest);
+		return result;
+	}
+	
 }

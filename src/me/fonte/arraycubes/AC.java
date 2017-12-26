@@ -5,7 +5,8 @@ import java.util.LinkedList;
 public class AC {
 
 	public static void main(String[] args) {
-		testSwap();
+		//testSwap();
+		testFlipX();
 	}
 
 	private static void testSwap() {
@@ -38,5 +39,36 @@ public class AC {
 			System.out.print("\n");
 		}
 		
+	}
+	
+	private static void testFlipX() {
+		//Create and initialize an input to the flipX method for 2D arrays
+		ArrayWrapper<Integer> inputForFlipX = new ArrayWrapper<Integer>();
+		inputForFlipX.data = new LinkedList<LinkedList<Integer>>();
+			
+		for(int i = 0; i < 5; i++) {
+			inputForFlipX.data.add(new LinkedList<Integer>());
+		}
+				
+		//init the 2D array with some incremented values
+		for(LinkedList<Integer> innerList : inputForFlipX.data) {
+			for(int counter = 0; counter < 5; counter++) {
+				innerList.add(counter);
+				System.out.print(counter + " ");
+			}
+			System.out.print("\n");
+		}
+				
+		//create an output 2D array and perform the swap, collecting the results
+		ArrayWrapper<Integer> outputFromFlipX = new ArrayWrapper<Integer>();
+		outputFromFlipX = inputForFlipX.flipX();
+				
+		//test the "swapped" output (just display it)
+		for(int i = 0; i < 5; i++) {
+			for(int n = 0; n < 5; n++) {
+				System.out.print(outputFromFlipX.data.get(i).get(n) + " ");
+			}
+			System.out.print("\n");
+		}
 	}
 }
