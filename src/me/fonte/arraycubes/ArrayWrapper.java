@@ -15,7 +15,7 @@ import java.util.UUID;
 /**
  * This is the ArrayWrapper class, which houses the methods to create and manipulate 2D linked lists
  * 
- * @author Jeremy
+ * @author Jeremy Fonte
  *
  * @param <T> A numeric class that fills the 2D LinkedList.
  */
@@ -67,7 +67,10 @@ public class ArrayWrapper<T extends Number> {
 		for(int i = 0; i < source.size(); i++) {
 			//init the inner LinkedList<T> in the 2D array
 			dest.add(i, new LinkedList<T>());
-			
+		}
+		
+		//actually set the flipped values
+		for(int i = 0; i < source.size(); i++) {	
 			//loop through the inner array and add the flipped values
 			for(int n = 0; n < source.get(i).size(); n++) {
 				//set the destination, flipped from the source
@@ -88,6 +91,9 @@ public class ArrayWrapper<T extends Number> {
 	 */
 	private boolean checkIfJagged() {		
 		//check if the current array is jagged
+		if(data.size() < 1 ) {
+			return false;
+		}
 		int baselineY = data.get(0).size();
 		for(LinkedList<T> l : data) {
 			if (l.size() != baselineY) {
