@@ -105,14 +105,16 @@ public class ArrayWrapper<T extends Number> {
 	}
 	
 	/**
-	 * Flips a 2D array over the "x-axis", that is horizontally
+	 * Flips a 2D array over the "x-axis", that is horizontally, i.e. reverses each inner array
 	 * 
 	 * @return The flipped 2D array
 	 */
 	public ArrayWrapper<T> flipX() {
+		//source and destination linked lists for ArrayWrapper data
 		LinkedList<LinkedList<T>> source = this.data;
 		LinkedList<LinkedList<T>> dest = new LinkedList<LinkedList<T>>();
 		
+		//if there are no sub-lists abandon the operation
 		if(source.size() < 1) {
 			//throw error
 			return null;
@@ -135,8 +137,41 @@ public class ArrayWrapper<T extends Number> {
 			
 		}
 		
+		//create the result ArrayWrapper with destination linked list data
 		ArrayWrapper<T> result = new ArrayWrapper<T>(dest);
 		return result;
 	}
 	
+	//flip the order of the inner lists, i.e. flip over Y axis
+	public ArrayWrapper<T> flipY() {
+		//source and destination linked lists for ArrayWrapper data
+		LinkedList<LinkedList<T>> source = this.data;
+		LinkedList<LinkedList<T>> dest = new LinkedList<LinkedList<T>>();
+		
+		//if there are no sub-lists abandon the operation
+		if(source.size() < 1) {
+			//throw error
+			return null;
+		}
+		
+		//init the LinkedList values
+		/*
+		for(int i = 0; i < source.size(); i++) {
+			//init the inner LinkedList<T> in the 2D array
+			dest.add(i, new LinkedList<T>());
+		}
+		*/
+		for(int i = source.size() - 1; i >= 0; i--) {	
+			dest.add(source.get(i));
+		}
+		
+		//create the result ArrayWrapper with destination linked list data
+		ArrayWrapper<T> result = new ArrayWrapper<T>(dest);
+		return result;
+	}
+	
+	//return a vertical slice of a 2D array - same X index for each Y list
+	public LinkedList<T> getYIndex() {
+		return new LinkedList<T>();
+	}
 }
