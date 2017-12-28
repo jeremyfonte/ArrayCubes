@@ -10,7 +10,7 @@
 package me.fonte.arraycubes;
 import java.util.LinkedList;
 import java.util.UUID;
-
+import java.util.function.Predicate;
 
 /**
  * This is the ArrayWrapper class, which houses the methods to create and manipulate 2D linked lists
@@ -153,14 +153,7 @@ public class ArrayWrapper<T extends Number> {
 			//throw error
 			return null;
 		}
-		
-		//init the LinkedList values
-		/*
-		for(int i = 0; i < source.size(); i++) {
-			//init the inner LinkedList<T> in the 2D array
-			dest.add(i, new LinkedList<T>());
-		}
-		*/
+
 		for(int i = source.size() - 1; i >= 0; i--) {	
 			dest.add(source.get(i));
 		}
@@ -170,8 +163,68 @@ public class ArrayWrapper<T extends Number> {
 		return result;
 	}
 	
-	//return a vertical slice of a 2D array - same X index for each Y list
-	public LinkedList<T> getYIndex() {
+	/**
+	 * generates a sequence in array form (2D)
+	 * 
+	 * @param seed The starting value of the sequence
+	 * @param lambdaFunc The lambda function that acts on each iteration to generate the next value
+	 * @param countElem The number of elements to generate
+	 * @return The generated sequence in an array form
+	 */
+	/*
+	public ArrayWrapper<T> generate(T seed, Predicate<T> lambdaFunc, int countElem, int xDimension) {
+		LinkedList<LinkedList<T>> result = new LinkedList<LinkedList<T>>();
+				
+		//calculate the number of rows in the array
+		int yDimension = (int)(countElem / xDimension);
+		
+		//main loop
+		for(int i = 0; i < yDimension; i++) {
+			result.add(new LinkedList<T>());
+			
+		}
+		
+		//create the ArrayWrapper to return
+		ArrayWrapper<T> resultArray = new ArrayWrapper<T>(result);
+		return resultArray;
+	}
+	*/
+	
+	
+	/**
+	 * Return a vertical slice of a 2D array - same X index for each Y list
+	 * 
+	 * @param source The source ArrayWrapper
+	 * @param xIndex The xIndex of the vertical slice
+	 * @return The LinkedList that holds the vertical array slice
+	 */
+	public LinkedList<T> getYSlice(ArrayWrapper<T> source, int xIndex) {
+		//extract the source data
+		LinkedList<LinkedList<T>> sourceList = source.data;
+		
+		boolean indexFail = false; //if this is set to true the function exits
+		
+		//loop through the list and see if any rows are shorter than the xIndex variable
+		for(LinkedList<T> thisList : sourceList) {
+			int listLen = 0;
+			
+			listLen = thisList.size();
+			if(xIndex >= listLen - 1) {
+				indexFail = true;
+				break;
+			}
+		}
+		
+		//if a row is too short return null/throw error
+		if(indexFail) {
+			//throw error
+			return null;
+		}
+		
+		
+
+		
 		return new LinkedList<T>();
 	}
+	
 }
