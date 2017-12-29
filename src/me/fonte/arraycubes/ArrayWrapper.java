@@ -198,9 +198,9 @@ public class ArrayWrapper<T extends Number> {
 	 * @param xIndex The xIndex of the vertical slice
 	 * @return The LinkedList that holds the vertical array slice
 	 */
-	public LinkedList<T> getYSlice(ArrayWrapper<T> source, int xIndex) {
+	public LinkedList<T> getYSlice(int xIndex) {
 		//extract the source data
-		LinkedList<LinkedList<T>> sourceList = source.data;
+		LinkedList<LinkedList<T>> sourceList = this.data;
 		
 		boolean indexFail = false; //if this is set to true the function exits
 		
@@ -221,10 +221,16 @@ public class ArrayWrapper<T extends Number> {
 			return null;
 		}
 		
+		//list for the elements of a y slice and the counter for the current index to save
+		LinkedList<T> ySliceList = new LinkedList<T>();
+		int sliceCounter = 0;
 		
-
+		//do the actually computation to perform a y-axis slice
+		for(LinkedList<T> thisList : sourceList) {
+			ySliceList.add(sliceCounter++, thisList.get(xIndex));
+		}
 		
-		return new LinkedList<T>();
+		return ySliceList;
 	}
 	
 }

@@ -7,7 +7,8 @@ public class AC {
 	public static void main(String[] args) {
 		//testSwap();
 		//testFlipX();
-		testFlipY();
+		//testFlipY();
+		testGetYSlice();
 	}
 
 	private static void testSwap() {
@@ -110,6 +111,36 @@ public class AC {
 		}
 		
 		
+		
+	}
+	
+	
+	private static void testGetYSlice() {
+		//Create and initialize an input to the flipX method for 2D arrays
+		ArrayWrapper<Integer> inputForGetYSlice = new ArrayWrapper<Integer>();
+		inputForGetYSlice.data = new LinkedList<LinkedList<Integer>>();
+							
+		//init the inner lists
+		for(int i = 0; i < 5; i++) {
+			inputForGetYSlice.data.add(new LinkedList<Integer>());
+		}
+		
+		//init the 2D array with some incremented values
+		for(LinkedList<Integer> innerList : inputForGetYSlice.data) {
+			for(int counter = 0; counter < 5; counter++) {
+				innerList.add(counter);
+				System.out.print(counter + " ");
+			}
+			System.out.print("\n");
+		}
+		
+		//choose and set an x index to use in a y-axis slice, then run the method
+		int xIndex = 2;
+		LinkedList<Integer> output = inputForGetYSlice.getYSlice(xIndex);
+		
+		for(Integer thisVal : output) {
+			System.out.print(thisVal + " ");
+		}
 		
 	}
 }
