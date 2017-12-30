@@ -8,7 +8,8 @@ public class AC {
 		//testSwap();
 		//testFlipX();
 		//testFlipY();
-		testGetYSlice();
+		//testGetYSlice();
+		testArrayDim();
 	}
 
 	private static void testSwap() {
@@ -143,4 +144,23 @@ public class AC {
 		}
 		
 	}
+	
+	private static void testArrayDim() {
+		ArrayWrapper<Integer> testArrayWrap = new ArrayWrapper<Integer>();
+		
+		//set parameters and call the array dim method
+		int xDim = 10;
+		int yDim = 5;
+		int defaultValue = 5;
+		testArrayWrap = testArrayWrap.arrayDim(xDim, yDim, defaultValue);
+		
+		//output the results of the array dim
+		for(LinkedList<Integer> innerArray: testArrayWrap.data) {
+			for(int thisVal : innerArray) {
+				System.out.print(thisVal + " ");
+			}
+			System.out.print("\n");
+		}
+	}
+	
 }

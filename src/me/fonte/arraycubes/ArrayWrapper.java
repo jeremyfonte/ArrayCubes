@@ -10,7 +10,7 @@
 package me.fonte.arraycubes;
 import java.util.LinkedList;
 import java.util.UUID;
-import java.util.function.Predicate;
+//import java.util.function.Predicate;
 
 /**
  * This is the ArrayWrapper class, which houses the methods to create and manipulate 2D linked lists
@@ -231,6 +231,33 @@ public class ArrayWrapper<T extends Number> {
 		}
 		
 		return ySliceList;
+	}
+	
+	
+	/**
+	 * Create a new initialized 2D array of the specified dimensions, and fill it with a default value
+	 * 
+	 * @param xDim The x-dimension of the 2D array (inner list)
+	 * @param yDim The y-dimension of the 2D array (outer list)
+	 * @param defaultValue The value to fill the new 2D array elements with
+	 * @return The initialized 2D array
+	 */
+	public ArrayWrapper<T> arrayDim(int xDim, int yDim, T defaultValue) {
+		//create the ArrayWrapper and declare its nested linked lists
+		this.data = new LinkedList<LinkedList<T>>();
+		
+		//cycle through the dimensions and initialize the elements
+		for(int i = 0; i < yDim; i++) {
+			this.data.add(new LinkedList<T>());
+			
+			for(int n = 0; n < xDim; n++) {
+				this.data.get(i).add(null);
+				this.data.get(i).set(n,  defaultValue);
+			}
+		}
+		
+		
+		return this;
 	}
 	
 }
