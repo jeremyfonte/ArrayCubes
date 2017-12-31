@@ -11,7 +11,8 @@ public class AC {
 		//testGetYSlice();
 		//testArrayDim();
 		//testReverse();
-		testMap();
+		//testMap();
+		testPad();
 	}
 
 	private static void testSwap() {
@@ -188,7 +189,7 @@ public class AC {
 		
 	}
 	
-	private static SingleArray testMap() {
+	private static void testMap() {
 		//create and init the input array
 		SingleArray<Integer> testIn = new SingleArray<Integer>();
 		
@@ -211,6 +212,29 @@ public class AC {
 		}
 		System.out.print("\n");
 		
-		return testOut;
+	}
+	
+	public static void testPad() {
+		//Create and initialize an input to the pad method for 2D arrays
+		ArrayWrapper<Integer> inputForPad = new ArrayWrapper<Integer>();
+		inputForPad.data = new LinkedList<LinkedList<Integer>>();
+		
+		for(int n = 0; n < 10; n++) {
+			inputForPad.data.add(n, new LinkedList<Integer>());
+			for(int rowVal = 0; rowVal < n; rowVal++) {
+				inputForPad.data.get(n).add(rowVal, 5);
+			}
+		}
+		
+		inputForPad = inputForPad.pad(0);
+	
+		
+		//output the results of the array dim
+		for(LinkedList<Integer> innerArray: inputForPad.data) {
+			for(int thisVal : innerArray) {
+				System.out.print(thisVal + " ");
+			}
+			System.out.print("\n");
+		}
 	}
 }

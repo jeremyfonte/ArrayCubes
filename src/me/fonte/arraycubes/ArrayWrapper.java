@@ -262,5 +262,44 @@ public class ArrayWrapper<T extends Number> {
 	}
 
 	
-	
+	/**
+	 * Modifies jagged arrays to become 2D rectangular arrays, padding new vals with the specified value
+	 * 
+	 * @param defaultValue The value to place in new vals
+	 * @return The padded 2D array
+	 */
+	public ArrayWrapper<T> pad(T defaultValue) {
+		LinkedList<LinkedList<T>> start = this.data;
+		
+		int maxLen = 0; //var that tracks the widest row
+		
+		//calculate widest row
+		for(LinkedList<T> row : start) {
+			int rowSize = row.size();
+			if(rowSize > maxLen) {
+				maxLen = rowSize;
+			}
+		}
+		
+		ArrayWrapper<T> output = new ArrayWrapper<T>();
+		output.data = new LinkedList<LinkedList<T>>();
+		
+		int index = 0;
+		
+		//expand shorter rows by padding them with the default value
+		for(LinkedList<T> row : start) {
+			int rowSize = row.size();
+			if(rowSize < maxLen) {
+				int sizeDiff = maxLen - rowSize;
+				for(int i = 0; i < sizeDiff; i++) {
+					row.add(rowSize, defaultValue);
+				}
+			}
+			
+			output.data.add(index, row);
+			index++;
+		}
+		
+		return output;
+	}
 }
