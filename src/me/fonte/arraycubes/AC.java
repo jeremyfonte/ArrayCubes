@@ -9,7 +9,8 @@ public class AC {
 		//testFlipX();
 		//testFlipY();
 		//testGetYSlice();
-		testArrayDim();
+		//testArrayDim();
+		testReverse();
 	}
 
 	private static void testSwap() {
@@ -163,4 +164,26 @@ public class AC {
 		}
 	}
 	
+	
+	private static void testReverse() {
+		SingleArray<Integer> testIn = new SingleArray<Integer>();
+		for(int i = 0; i < 10; i++) {
+			testIn.data.add(i, i);
+		}
+		
+		SingleArray<Integer> testOut = testIn.reverse();
+		
+		System.out.print("Original:\n");
+		for(int thisVal : testIn.data) {			
+			System.out.print(thisVal + " ");
+		}
+		System.out.print("\n");
+		
+		System.out.print("Reversed:\n");
+		for(int thisVal : testOut.data) {			
+			System.out.print(thisVal + " ");
+		}
+		System.out.print("\n");		
+		
+	}
 }
