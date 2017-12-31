@@ -1,18 +1,20 @@
 package me.fonte.arraycubes;
 import java.util.LinkedList;
+import java.util.Date;
 
 //The command-line testing and experimentation interface for ArrayCubes
 public class AC {
 
 	public static void main(String[] args) {
 		//testSwap();
-		//testFlipX();
+		//testFlipX(true);
 		//testFlipY();
 		//testGetYSlice();
 		//testArrayDim();
 		//testReverse();
 		//testMap();
-		testPad();
+		//testPad();
+		performance1();
 	}
 
 	private static void testSwap() {
@@ -47,7 +49,7 @@ public class AC {
 		
 	}
 	
-	private static void testFlipX() {
+	private static void testFlipX(boolean printOut) {
 		//Create and initialize an input to the flipX method for 2D arrays
 		ArrayWrapper<Integer> inputForFlipX = new ArrayWrapper<Integer>();
 		inputForFlipX.data = new LinkedList<LinkedList<Integer>>();
@@ -60,9 +62,14 @@ public class AC {
 		for(LinkedList<Integer> innerList : inputForFlipX.data) {
 			for(int counter = 0; counter < 5; counter++) {
 				innerList.add(counter);
-				System.out.print(counter + " ");
+				if(printOut) {
+					System.out.print(counter + " ");
+				}
 			}
-			System.out.print("\n");
+			
+			if(printOut) {
+				System.out.print("\n");
+			}
 		}
 				
 		//create an output 2D array and perform the swap, collecting the results
@@ -72,9 +79,13 @@ public class AC {
 		//test the "swapped" output (just display it)
 		for(int i = 0; i < 5; i++) {
 			for(int n = 0; n < 5; n++) {
-				System.out.print(outputFromFlipX.data.get(i).get(n) + " ");
+				if(printOut) {
+					System.out.print(outputFromFlipX.data.get(i).get(n) + " ");
+				}
 			}
-			System.out.print("\n");
+			if(printOut) {
+				System.out.print("\n");
+			}
 		}
 	}
 	
@@ -236,5 +247,21 @@ public class AC {
 			}
 			System.out.print("\n");
 		}
+	}
+	
+	private static void performance1() {
+		//starting time
+		long start = System.nanoTime();
+		
+		for(int n = 0; n < 10000; n++) {
+			testFlipX(false);
+		}
+		
+		//finishing time
+		long finish = System.nanoTime();
+		
+		//output elapsed time
+		long timeDiff = (finish - start) / 1000000;
+		System.out.println("time: " + timeDiff);
 	}
 }
