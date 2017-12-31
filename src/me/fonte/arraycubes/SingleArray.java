@@ -57,4 +57,6 @@ public class SingleArray<T extends Number> {
 		return output;
 	}
 	
+	
+	
 }
