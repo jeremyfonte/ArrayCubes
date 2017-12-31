@@ -1,6 +1,6 @@
-package me.fonte.arraycubes;
+package me.fonte.arraycubes.test;
 import java.util.LinkedList;
-import java.util.Date;
+import me.fonte.arraycubes.*;
 
 //The command-line testing and experimentation interface for ArrayCubes
 public class AC {
@@ -20,14 +20,14 @@ public class AC {
 	private static void testSwap() {
 		//Create and initialize an input to the swap method for 2D arrays
 		ArrayWrapper<Integer> inputForSwap = new ArrayWrapper<Integer>();
-		inputForSwap.data = new LinkedList<LinkedList<Integer>>();
+		inputForSwap.initData();
 	
 		for(int i = 0; i < 5; i++) {
-			inputForSwap.data.add(new LinkedList<Integer>());
+			inputForSwap.initInnerList();
 		}
 		
 		//init the 2D array with some incremented values
-		for(LinkedList<Integer> innerList : inputForSwap.data) {
+		for(LinkedList<Integer> innerList : inputForSwap.getData()) {
 			for(int counter = 0; counter < 5; counter++) {
 				innerList.add(counter);
 				System.out.print(counter + " ");
@@ -42,7 +42,7 @@ public class AC {
 		//test the "swapped" output (just display it)
 		for(int i = 0; i < 5; i++) {
 			for(int n = 0; n < 5; n++) {
-				System.out.print(outputFromSwap.data.get(i).get(n) + " ");
+				System.out.print(outputFromSwap.getData().get(i).get(n) + " ");
 			}
 			System.out.print("\n");
 		}
@@ -52,14 +52,14 @@ public class AC {
 	private static void testFlipX(boolean printOut) {
 		//Create and initialize an input to the flipX method for 2D arrays
 		ArrayWrapper<Integer> inputForFlipX = new ArrayWrapper<Integer>();
-		inputForFlipX.data = new LinkedList<LinkedList<Integer>>();
+		inputForFlipX.initData();
 			
 		for(int i = 0; i < 5; i++) {
-			inputForFlipX.data.add(new LinkedList<Integer>());
+			inputForFlipX.initInnerList();
 		}
 				
 		//init the 2D array with some incremented values
-		for(LinkedList<Integer> innerList : inputForFlipX.data) {
+		for(LinkedList<Integer> innerList : inputForFlipX.getData()) {
 			for(int counter = 0; counter < 5; counter++) {
 				innerList.add(counter);
 				if(printOut) {
@@ -80,7 +80,7 @@ public class AC {
 		for(int i = 0; i < 5; i++) {
 			for(int n = 0; n < 5; n++) {
 				if(printOut) {
-					System.out.print(outputFromFlipX.data.get(i).get(n) + " ");
+					System.out.print(outputFromFlipX.getData().get(i).get(n) + " ");
 				}
 			}
 			if(printOut) {
@@ -94,16 +94,16 @@ public class AC {
 	private static void testFlipY() {
 		//Create and initialize an input to the flipX method for 2D arrays
 		ArrayWrapper<Integer> inputForFlipY = new ArrayWrapper<Integer>();
-		inputForFlipY.data = new LinkedList<LinkedList<Integer>>();
+		inputForFlipY.initData();
 					
 		for(int i = 0; i < 5; i++) {
-			inputForFlipY.data.add(new LinkedList<Integer>());
+			inputForFlipY.initInnerList();
 		}
 		
 		int counter2 = 0;
 		
 		//init the 2D array with some incremented values
-		for(LinkedList<Integer> innerList : inputForFlipY.data) {
+		for(LinkedList<Integer> innerList : inputForFlipY.getData()) {
 			for(int counter = 0; counter < 5; counter++) {
 				counter2++;
 				innerList.add(counter2);
@@ -120,7 +120,7 @@ public class AC {
 		//test the "swapped" output (just display it)
 		for(int i = 0; i < 5; i++) {
 			for(int n = 0; n < 5; n++) {
-				System.out.print(outputFromFlipY.data.get(i).get(n) + " ");
+				System.out.print(outputFromFlipY.getData().get(i).get(n) + " ");
 			}
 			System.out.print("\n");
 		}
@@ -133,15 +133,15 @@ public class AC {
 	private static void testGetYSlice() {
 		//Create and initialize an input to the flipX method for 2D arrays
 		ArrayWrapper<Integer> inputForGetYSlice = new ArrayWrapper<Integer>();
-		inputForGetYSlice.data = new LinkedList<LinkedList<Integer>>();
+		inputForGetYSlice.initData();
 							
 		//init the inner lists
 		for(int i = 0; i < 5; i++) {
-			inputForGetYSlice.data.add(new LinkedList<Integer>());
+			inputForGetYSlice.initInnerList();
 		}
 		
 		//init the 2D array with some incremented values
-		for(LinkedList<Integer> innerList : inputForGetYSlice.data) {
+		for(LinkedList<Integer> innerList : inputForGetYSlice.getData()) {
 			for(int counter = 0; counter < 5; counter++) {
 				innerList.add(counter);
 				System.out.print(counter + " ");
@@ -169,7 +169,7 @@ public class AC {
 		testArrayWrap = testArrayWrap.arrayDim(xDim, yDim, defaultValue);
 		
 		//output the results of the array dim
-		for(LinkedList<Integer> innerArray: testArrayWrap.data) {
+		for(LinkedList<Integer> innerArray: testArrayWrap.getData()) {
 			for(int thisVal : innerArray) {
 				System.out.print(thisVal + " ");
 			}
@@ -181,7 +181,8 @@ public class AC {
 	private static void testReverse() {
 		SingleArray<Integer> testIn = new SingleArray<Integer>();
 		for(int i = 0; i < 10; i++) {
-			testIn.data.add(i, i);
+			//testIn.addInnerData(i, i);
+			
 		}
 		
 		SingleArray<Integer> testOut = testIn.reverse();
@@ -228,12 +229,12 @@ public class AC {
 	public static void testPad() {
 		//Create and initialize an input to the pad method for 2D arrays
 		ArrayWrapper<Integer> inputForPad = new ArrayWrapper<Integer>();
-		inputForPad.data = new LinkedList<LinkedList<Integer>>();
+		inputForPad.initData();
 		
 		for(int n = 0; n < 10; n++) {
-			inputForPad.data.add(n, new LinkedList<Integer>());
+			inputForPad.addListDataIndex(n, new LinkedList<Integer>());
 			for(int rowVal = 0; rowVal < n; rowVal++) {
-				inputForPad.data.get(n).add(rowVal, 5);
+				inputForPad.addInnerDataIndex(n, rowVal, 5);
 			}
 		}
 		
@@ -241,7 +242,7 @@ public class AC {
 	
 		
 		//output the results of the array dim
-		for(LinkedList<Integer> innerArray: inputForPad.data) {
+		for(LinkedList<Integer> innerArray: inputForPad.getData()) {
 			for(int thisVal : innerArray) {
 				System.out.print(thisVal + " ");
 			}

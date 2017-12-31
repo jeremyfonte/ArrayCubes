@@ -38,6 +38,39 @@ public class ArrayWrapper<T extends Number> {
 	//The actual 2D array data in a linked list 
 	LinkedList<LinkedList<T>> data = new LinkedList<LinkedList<T>>();
 	
+	//retrieve the data structure
+	public LinkedList<LinkedList<T>> getData() {
+		return this.data;
+	}
+	//set the entire data property at once
+	public void setData(LinkedList<LinkedList<T>> data) {
+		this.data = data; 
+	}
+	//init the whole data property - 2D linked list
+	public void initData() {
+		this.data = new LinkedList<LinkedList<T>>();
+	}
+	//init the inner list (linked list)
+	public void initInnerList() {
+		this.data.add(new LinkedList<T>());
+	}
+	//init the inner list with the provided linked list
+	public void addListData(LinkedList<T> innerList) {
+		this.data.add(innerList);
+	}
+	//
+	public void addListDataIndex(int index, LinkedList<T> innerList) {
+		this.data.add(index, innerList);
+	}
+	//add a new value to the data property's inner list
+	public void addInnerData(int index, T innerVal) {
+		this.data.get(index).add(innerVal);
+	}
+	public void addInnerDataIndex(int index, int innerIndex, T innerVal) {
+		this.data.get(index).add(innerIndex, innerVal);
+	}
+	
+	
 	/**"swap" assumes the array is "even" or "rectangular", not a jagged array of arrays
 	 * 
 	 * @return Returns a new ArrayWrapper that has been swapped, columns for rows
