@@ -1,6 +1,6 @@
 /**
  * SingleArray
- * Functions for 1D arrays
+ * Functions for 1D arrays, extending linked lists
  * 
  * 
  * @author Jeremy Fonte
@@ -8,6 +8,8 @@
 
 package me.fonte.arraycubes;
 import java.util.LinkedList;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * 
@@ -41,4 +43,18 @@ public class SingleArray<T extends Number> {
 		 
 		 return output;
 	}
+	
+	public SingleArray<T> map(Function<T, T> func) {
+		//create and init the SingleArray to construct and output
+		SingleArray<T> output = new SingleArray<T>();
+		
+		int n = 0;
+		for(T elem : this.data) {
+			output.data.add(n, func.apply(elem));
+			n++;
+		}
+		
+		return output;
+	}
+	
 }

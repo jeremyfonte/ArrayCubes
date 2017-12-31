@@ -10,7 +10,6 @@
 package me.fonte.arraycubes;
 import java.util.LinkedList;
 import java.util.UUID;
-//import java.util.function.Predicate;
 
 /**
  * This is the ArrayWrapper class, which houses the methods to create and manipulate 2D linked lists

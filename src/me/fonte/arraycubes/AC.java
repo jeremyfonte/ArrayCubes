@@ -10,7 +10,8 @@ public class AC {
 		//testFlipY();
 		//testGetYSlice();
 		//testArrayDim();
-		testReverse();
+		//testReverse();
+		testMap();
 	}
 
 	private static void testSwap() {
@@ -185,5 +186,31 @@ public class AC {
 		}
 		System.out.print("\n");		
 		
+	}
+	
+	private static SingleArray testMap() {
+		//create and init the input array
+		SingleArray<Integer> testIn = new SingleArray<Integer>();
+		
+		for(int i = 0; i < 10; i++) {
+			testIn.data.add(i, i * 2);
+		}
+		
+		//call the test method, with a lambda that doubles the values of all input elements
+		SingleArray<Integer> testOut = testIn.map((n) -> n*2);		
+		
+		System.out.print("Original:\n");
+		for(int thisVal : testIn.data) {			
+			System.out.print(thisVal + " ");
+		}
+		System.out.print("\n");
+		
+		System.out.print("Reversed:\n");
+		for(int thisVal : testOut.data) {			
+			System.out.print(thisVal + " ");
+		}
+		System.out.print("\n");
+		
+		return testOut;
 	}
 }
