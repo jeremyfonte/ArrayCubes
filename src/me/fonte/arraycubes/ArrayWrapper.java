@@ -36,7 +36,7 @@ public class ArrayWrapper<T extends Number> {
 	}
 	
 	//The actual 2D array data in a linked list 
-	LinkedList<LinkedList<T>> data = new LinkedList<LinkedList<T>>();
+	private LinkedList<LinkedList<T>> data = new LinkedList<LinkedList<T>>();
 	
 	//retrieve the data structure
 	public LinkedList<LinkedList<T>> getData() {
@@ -58,7 +58,7 @@ public class ArrayWrapper<T extends Number> {
 	public void addListData(LinkedList<T> innerList) {
 		this.data.add(innerList);
 	}
-	//
+	//init the inner list value to the provided list at a specific index
 	public void addListDataIndex(int index, LinkedList<T> innerList) {
 		this.data.add(index, innerList);
 	}
@@ -66,6 +66,7 @@ public class ArrayWrapper<T extends Number> {
 	public void addInnerData(int index, T innerVal) {
 		this.data.get(index).add(innerVal);
 	}
+	//add a new value to the data property's inner list at a specified index
 	public void addInnerDataIndex(int index, int innerIndex, T innerVal) {
 		this.data.get(index).add(innerIndex, innerVal);
 	}

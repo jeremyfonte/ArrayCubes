@@ -20,7 +20,27 @@ import java.util.function.Predicate;
 public class SingleArray<T extends Number> {
 
 	//init the data field
-	LinkedList<T> data = new LinkedList<T>();
+	private LinkedList<T> data = new LinkedList<T>();
+	//initialize the data property
+	public void initData() {
+		this.data = new LinkedList<T>();
+	}
+	//retrieve the data property
+	public LinkedList<T> getData() {
+		return this.data;
+	}
+	//set the data property all at once
+	public void setData(LinkedList<T> data) {
+		this.data = data;
+	}
+	//add a value to the data property
+	public void addData(T innerVal) {
+		this.data.add(innerVal);
+	}
+	//add a value to the data property, by index
+	public void addDataIndex(int index, T innerVal) {
+		this.data.add(index, innerVal);
+	}
 	
 	//empty constructor
 	public SingleArray() {};

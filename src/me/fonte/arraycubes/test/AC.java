@@ -17,7 +17,7 @@ public class AC {
 		performance1();
 	}
 
-	private static void testSwap() {
+	private static void testSwap(boolean printOut) {
 		//Create and initialize an input to the swap method for 2D arrays
 		ArrayWrapper<Integer> inputForSwap = new ArrayWrapper<Integer>();
 		inputForSwap.initData();
@@ -30,9 +30,13 @@ public class AC {
 		for(LinkedList<Integer> innerList : inputForSwap.getData()) {
 			for(int counter = 0; counter < 5; counter++) {
 				innerList.add(counter);
-				System.out.print(counter + " ");
+				if(printOut) {
+					System.out.print(counter + " ");
+				}
 			}
-			System.out.print("\n");
+			if(printOut) {
+				System.out.print("\n");
+			}
 		}
 		
 		//create an output 2D array and perform the swap, collecting the results
@@ -42,9 +46,13 @@ public class AC {
 		//test the "swapped" output (just display it)
 		for(int i = 0; i < 5; i++) {
 			for(int n = 0; n < 5; n++) {
-				System.out.print(outputFromSwap.getData().get(i).get(n) + " ");
+				if(printOut) {
+					System.out.print(outputFromSwap.getData().get(i).get(n) + " ");
+				}
 			}
-			System.out.print("\n");
+			if(printOut) {
+				System.out.print("\n");
+			}
 		}
 		
 	}
@@ -91,7 +99,7 @@ public class AC {
 	
 	
 	
-	private static void testFlipY() {
+	private static void testFlipY(boolean printOut) {
 		//Create and initialize an input to the flipX method for 2D arrays
 		ArrayWrapper<Integer> inputForFlipY = new ArrayWrapper<Integer>();
 		inputForFlipY.initData();
@@ -107,9 +115,13 @@ public class AC {
 			for(int counter = 0; counter < 5; counter++) {
 				counter2++;
 				innerList.add(counter2);
-				System.out.print(counter2 + " ");
+				if(printOut) {
+					System.out.print(counter2 + " ");
+				}
 			}
-			System.out.print("\n");
+			if(printOut) {
+				System.out.print("\n");
+			}
 		}
 		
 		
@@ -120,17 +132,18 @@ public class AC {
 		//test the "swapped" output (just display it)
 		for(int i = 0; i < 5; i++) {
 			for(int n = 0; n < 5; n++) {
-				System.out.print(outputFromFlipY.getData().get(i).get(n) + " ");
+				if(printOut) {
+					System.out.print(outputFromFlipY.getData().get(i).get(n) + " ");
+				}
 			}
-			System.out.print("\n");
-		}
-		
-		
-		
+			if(printOut) {
+				System.out.print("\n");
+			}
+		}	
 	}
 	
 	
-	private static void testGetYSlice() {
+	private static void testGetYSlice(boolean printOut) {
 		//Create and initialize an input to the flipX method for 2D arrays
 		ArrayWrapper<Integer> inputForGetYSlice = new ArrayWrapper<Integer>();
 		inputForGetYSlice.initData();
@@ -144,9 +157,13 @@ public class AC {
 		for(LinkedList<Integer> innerList : inputForGetYSlice.getData()) {
 			for(int counter = 0; counter < 5; counter++) {
 				innerList.add(counter);
-				System.out.print(counter + " ");
+				if(printOut) {
+					System.out.print(counter + " ");
+				}
 			}
-			System.out.print("\n");
+			if(printOut) {
+				System.out.print("\n");
+			}
 		}
 		
 		//choose and set an x index to use in a y-axis slice, then run the method
@@ -154,12 +171,14 @@ public class AC {
 		LinkedList<Integer> output = inputForGetYSlice.getYSlice(xIndex);
 		
 		for(Integer thisVal : output) {
-			System.out.print(thisVal + " ");
+			if(printOut) {
+				System.out.print(thisVal + " ");
+			}
 		}
 		
 	}
 	
-	private static void testArrayDim() {
+	private static void testArrayDim(boolean printOut) {
 		ArrayWrapper<Integer> testArrayWrap = new ArrayWrapper<Integer>();
 		
 		//set parameters and call the array dim method
@@ -171,59 +190,73 @@ public class AC {
 		//output the results of the array dim
 		for(LinkedList<Integer> innerArray: testArrayWrap.getData()) {
 			for(int thisVal : innerArray) {
-				System.out.print(thisVal + " ");
+				if(printOut) {
+					System.out.print(thisVal + " ");
+				}
 			}
-			System.out.print("\n");
+			if(printOut) {
+				System.out.print("\n");
+			}
 		}
 	}
 	
 	
-	private static void testReverse() {
+	private static void testReverse(boolean printOut) {
 		SingleArray<Integer> testIn = new SingleArray<Integer>();
 		for(int i = 0; i < 10; i++) {
-			//testIn.addInnerData(i, i);
+			testIn.addDataIndex(i, i);
 			
 		}
 		
 		SingleArray<Integer> testOut = testIn.reverse();
-		
-		System.out.print("Original:\n");
-		for(int thisVal : testIn.data) {			
-			System.out.print(thisVal + " ");
+		if(printOut) {
+			System.out.print("Original:\n");
 		}
-		System.out.print("\n");
-		
-		System.out.print("Reversed:\n");
-		for(int thisVal : testOut.data) {			
-			System.out.print(thisVal + " ");
+		for(int thisVal : testIn.getData()) {			
+			if(printOut) {
+				System.out.print(thisVal + " ");
+			}
 		}
-		System.out.print("\n");		
+		
+		if(printOut) {
+			System.out.print("\n");
+			System.out.print("Reversed:\n");
+		}
+		for(int thisVal : testOut.getData()) {			
+			if(printOut) {
+				System.out.print(thisVal + " ");
+			}
+		}
+		if(printOut) {
+			System.out.print("\n");
+		}
 		
 	}
 	
-	private static void testMap() {
+	private static void testMap(boolean printOut) {
 		//create and init the input array
 		SingleArray<Integer> testIn = new SingleArray<Integer>();
 		
 		for(int i = 0; i < 10; i++) {
-			testIn.data.add(i, i * 2);
+			testIn.addDataIndex(i, i * 2);
 		}
 		
 		//call the test method, with a lambda that doubles the values of all input elements
 		SingleArray<Integer> testOut = testIn.map((n) -> n*2);		
 		
-		System.out.print("Original:\n");
-		for(int thisVal : testIn.data) {			
-			System.out.print(thisVal + " ");
-		}
-		System.out.print("\n");
+		if(printOut) {
+			System.out.print("Original:\n");
+			for(int thisVal : testIn.getData()) {			
+				System.out.print(thisVal + " ");
+			}
+			System.out.print("\n");
 		
-		System.out.print("Reversed:\n");
-		for(int thisVal : testOut.data) {			
-			System.out.print(thisVal + " ");
+			System.out.print("Reversed:\n");
+			for(int thisVal : testOut.getData()) {			
+				System.out.print(thisVal + " ");
+			}
+			System.out.print("\n");
 		}
-		System.out.print("\n");
-		
 	}
 	
 	public static void testPad() {
@@ -255,7 +288,7 @@ public class AC {
 		long start = System.nanoTime();
 		
 		for(int n = 0; n < 10000; n++) {
-			testFlipX(false);
+			testSwap(false);
 		}
 		
 		//finishing time
