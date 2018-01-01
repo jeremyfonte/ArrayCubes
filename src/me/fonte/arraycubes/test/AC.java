@@ -14,7 +14,8 @@ public class AC {
 		//testReverse();
 		//testMap();
 		//testPad();
-		performance1();
+		//performance1();
+		testTwoDimGenerator();
 	}
 
 	private static void testSwap(boolean printOut) {
@@ -298,4 +299,31 @@ public class AC {
 		long timeDiff = (finish - start) / 1000000;
 		System.out.println("time: " + timeDiff);
 	}
+
+	private static void testTwoDimGenerator() {
+		ArrayWrapper<Integer> test = new ArrayWrapper<Integer>();
+		test.initData();
+		
+		int countY = 0;
+		for(int i = 0; i < 100; i += 10) {
+			test.addListData(new LinkedList<Integer>());
+			for(int n = 0; n < 10; n++) {
+				test.addInnerDataIndex(countY, n, i + n);
+			}
+			countY++;
+		}
+		
+		LinkedList<Integer> result = new LinkedList<Integer>();
+		
+		//
+		//Does not currently support negative deltas, important to add support for them
+		result = test.TwoDimGenerator(1, 1, 0, 0, 40);
+		
+		int resultSize = result.size();
+		
+		for(int n = 0; n < resultSize; n++) {
+			System.out.print(result.get(n) + " ");
+		}
+	}
+
 }

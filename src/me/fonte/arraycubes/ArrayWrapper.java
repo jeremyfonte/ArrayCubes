@@ -336,4 +336,47 @@ public class ArrayWrapper<T extends Number> {
 		
 		return output;
 	}
+	
+	/**
+	 * Generates output by moving through a 2D array in a certain stepwise fashion
+	 * 
+	 * @param xDelta The change in x values on each iteration
+	 * @param yDelta The change in y values on each iteration
+	 * @param x The starting x value 
+	 * @param y The starting y value
+	 * @param count The number of iterations
+	 * @return A linked list of the generated values
+	 */
+	public LinkedList<T> TwoDimGenerator(int xDelta, int yDelta, int x, int y, int count) {		
+		int yDim = this.data.size();
+		int xDim = 0; //initial value
+		int xDimMax = 0; //just an initial value
+		boolean notRect = false;
+		
+		//find the longest x dimension in 2D array
+		for(int i = 0; i < yDim; i++) {
+			xDim = this.data.get(i).size();
+			if(xDim > xDimMax && xDimMax > 0) {
+				notRect = true;
+				xDimMax = xDim;
+			}
+		}
+		
+		//if the 2D array isn't rectangular, quit
+		if(notRect) {
+			//throw error
+			return null;
+		}
+		
+		LinkedList<T> output = new LinkedList<T>();
+		
+		for(int n = 0; n < count; n++) {
+			output.add(n, this.data.get(y).get(x));
+			
+			x = (x + xDelta) % xDim;
+			y = (y + yDelta) % yDim;
+		}
+		
+		return output;
+	}
 }
